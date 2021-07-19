@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Josefin+Slab:wght@600&display=swap');
+
+html, body {
+  width: 100%;
+  height:100%;
+}
+
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body {
+   text-align: center;
+   margin: 0;
+   padding: 0;
+   font-family: sans-serif;
+   display: flex;
+   min-height: 100vh;
+   align-items: center;
+   justify-content: center;
+   font-family: 'Josefin Slab', serif;
+}
+
+.microphone-container{
+  padding: 2rem;
+  width: 50rem;
+  margin: 0 auto;
+  border-radius: 1rem;
+  position: relative;
+  background: white;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
+
+  h1 {
+   font-family: 'Josefin Slab', serif;
+   }
+}
+
+.microphone-status {
+  font-family: 'Bad Script', cursive;
+}
+
+.trees {
+  background-image: url('./trees.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.microphone-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.microphone-wrapper h3 {
+  margin-top: 27%;
+}
+
+.microphone-status{
+  display: inline-block;
+  width: 250px;
+}
+
+.microphone-icon-circle {
+	background: rgb(211,211,211);
+	border-radius: 50%;
+	margin: 10px;
+	height: 150px;
+	width: 150px;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.pulse{
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+
+.speech-transcript {
+  margin: 2em;
+  font-size: 20px;
+}
+
+
+.result-container{
+  text-decoration:none;
+  color:#000;
+  background:#ffc;
+  display:block;
+  height:15em;
+  width:30em;
+  padding:1em;
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  transform: rotate(-6deg);
+  transition: transform .15s linear;
+  margin: 5% 0 5% 19%;
+  p{
+    font-size: 24px;
+  }
+}
+
+.result-container:hover, .result-container:focus{
+  box-shadow:10px 10px 7px rgba(0,0,0,.7);
+  transform: scale(1.25);
+  position:relative;
+  z-index:5;
+}
+
+.controls {
+  margin: 2% 5%;
+  border-radius: 24px;
+  font-size: 20px;
+  padding: 10px 15px;
+  color: black;
+  font-family: 'Josefin Slab', serif;
+  width: 150px;
+}
+
+.reset-transcript{
+  background-color: white;
+  border: solid 3px #90EE90;
+}
+
+.reset-transcript:hover {
+  background-color: #90EE90;
+  color: white;
+}
+
+.microphone-stop {
+  background-color: white;
+  border: solid 3px #FF4500;
+}
+
+.microphone-stop:hover {
+  background-color: #FF4500;
+  color: white;
+}
