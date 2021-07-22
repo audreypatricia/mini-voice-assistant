@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const DisplayData = (props) => {
   return(
     <div>
-      <h2>Hmmm... let me think about that</h2>
       <p>I found this: </p>
       <div className="result-container">
         <p className="result">{props.data}</p>

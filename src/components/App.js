@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import DisplayData from './DisplayData';
+import WeatherWidget from './WeatherWidget';
 
 function App() {
   const commands = [
@@ -17,15 +18,25 @@ function App() {
     {
       command: "Tell me the weather in *",
       callback: (city) => {
-        console.log("here");
-        const weatherURL = 'http://api.openweathermap.org/data/2.5/weather';
+        const weatherURL = 'https://api.openweathermap.org/data/2.5/weather';
         const weatherParams = {
           q: city,
           units: 'metric',
           appid: '6ae0f50b6e18f61ba631bcf5f473a36f'
         };
         axios.get(weatherURL, {params: weatherParams}).then((result) => {
-          console.log(result.data);
+          const weatherData = result.data;
+          const weatherObj = {
+            icon: `https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`,
+            iconDesc: weatherData.weather[0].description,
+            locName: weatherData.name,
+            currTemp: weatherData.main.temp,
+            maxMin: `${Math.floor(weatherData.main.temp_max)}°C/${Math.floor(weatherData.main.temp_min)}°C`,
+            feelsLike: weatherData.main.feels_like,
+            windSpeed: parseInt(weatherData.wind.gust) * (18/5),
+          }
+          setWeatherObj(weatherObj)
+          debugger;
         })
       }
     },
@@ -41,6 +52,7 @@ function App() {
         };
         axios.get(weatherURL, {params: weatherParams}).then((result) => {
           console.log(result.data);
+
         })
       }
     },
@@ -97,6 +109,7 @@ function App() {
   const { transcript, resetTranscript } = useSpeechRecognition({ commands });
   const [isListening, setIsListening] = useState(false);
   const [data, setData] = useState(null);
+  const [weatherObj, setWeatherObj] = useState({});
   const microphoneRef = useRef(null);
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return (
@@ -128,7 +141,6 @@ function App() {
     setData(null);
   };
 
-  console.log(isListening);
   return (
     <div className="App">
       <div className="microphone-container">
@@ -152,6 +164,7 @@ function App() {
            </button>
           )}
           { data && <DisplayData data={data}/>}
+          { weatherObj && <WeatherWidget weatherObj={weatherObj} /> }
         </div>
 
       </div>
